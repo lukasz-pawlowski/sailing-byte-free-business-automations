@@ -1,0 +1,891 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Globals - CHANGE ME!",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Enforce Order - Positions Last",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Get Page GSC Status",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Page GSC Stats",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Google Analytics Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enforce Order - Positions Last": {
+      "main": [
+        [
+          {
+            "node": "Keep Only Valuable Columns",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Sort For Testing Purposes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get sitemap XML": {
+      "main": [
+        [
+          {
+            "node": "Convert to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to JSON": {
+      "main": [
+        [
+          {
+            "node": "Split Out to Table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out to Table": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit for Testing Purposes": {
+      "main": [
+        [
+          {
+            "node": "Enforce Order - Positions Last",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait to Comply with API Limits": {
+      "main": [
+        [
+          {
+            "node": "Merge AI Output With AI Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Globals - CHANGE ME!": {
+      "main": [
+        [
+          {
+            "node": "Get sitemap XML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Page GSC Status": {
+      "main": [
+        [
+          {
+            "node": "Merge Status and Stats",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Page GSC Stats": {
+      "main": [
+        [
+          {
+            "node": "Merge Status and Stats",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Status and Stats": {
+      "main": [
+        [
+          {
+            "node": "SEO analyst",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait to Comply with API Limits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "SEO analyst",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Google Analytics Data": {
+      "main": [
+        [
+          {
+            "node": "Merge Status and Stats",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "SEO analyst",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge AI Output With AI Input": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown to HTML": {
+      "main": [
+        [
+          {
+            "node": "Merge AI Output With AI Input",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Keep Only Valuable Columns": {
+      "main": [
+        [
+          {
+            "node": "Change to HTML table for sending",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Change to HTML table for sending": {
+      "main": [
+        [
+          {
+            "node": "Send Email with Full report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort For Testing Purposes": {
+      "main": [
+        [
+          {
+            "node": "Limit for Testing Purposes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SEO analyst": {
+      "main": [
+        [
+          {
+            "node": "Markdown to HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-25T10:11:48.975Z",
+  "id": "Q0fs6FhvxUSO5kL4",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Google Search Console and Analytics Analysis with AI Optimizations",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -300
+      ],
+      "id": "4a4b478e-b5f8-4ddc-a6cc-48f1274cb5d6",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        40,
+        580
+      ],
+      "id": "b52900dd-a2bd-42bb-8e1d-ce3cff259ec7",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "content": "## Get Google Data and Push It Through AI",
+        "height": 640,
+        "width": 1620
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -40,
+        480
+      ],
+      "typeVersion": 1,
+      "id": "1ebe691b-6b76-4956-b181-c2be251d48be",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        280,
+        260
+      ],
+      "id": "7194a576-50ab-4df0-b6db-d6a74bcbb927",
+      "name": "Enforce Order - Positions Last"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "loc",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        940,
+        -60
+      ],
+      "id": "be892b2b-6141-415c-a503-d4f7d467cc6a",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "content": "## Get All Pages From Sitemap",
+        "height": 320,
+        "width": 880
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        240,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "ebb767ad-a8db-449a-8d52-56731248e9e5",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Globals - CHANGE ME!').item.json.sitemap_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        280,
+        -60
+      ],
+      "id": "d421db5a-c224-44ef-a471-d64ca8ddaa69",
+      "name": "Get sitemap XML"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.xml",
+      "typeVersion": 1,
+      "position": [
+        500,
+        -60
+      ],
+      "id": "6bf0e08e-1cfa-4484-b953-cd215447d053",
+      "name": "Convert to JSON"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "urlset.url",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        720,
+        -60
+      ],
+      "id": "b5ab24fc-8c0f-4158-9452-35fc682246ff",
+      "name": "Split Out to Table"
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        -60
+      ],
+      "id": "81c644b2-1de8-4f51-be73-ac2246fb3c5f",
+      "name": "Limit for Testing Purposes"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        900,
+        500
+      ],
+      "id": "77c271b5-99b9-4adf-8b7f-7dc0846325bd",
+      "name": "Wait to Comply with API Limits",
+      "webhookId": "51b5aeba-6be7-45d4-97fd-4e5cb5a8401b"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "be81885f-3f27-4edd-985d-8dd98908a197",
+              "name": "sitemap_url",
+              "value": "https://sailingbyte.com/sitemap.xml",
+              "type": "string"
+            },
+            {
+              "id": "c1f4c9ba-9222-4757-a89e-0d67af1d3944",
+              "name": "search_console_selector",
+              "value": "sc-domain:example.com",
+              "type": "string"
+            },
+            {
+              "id": "9c57f9cc-1e94-4174-b622-7533c7776bee",
+              "name": "analysis_start_date",
+              "value": "={{ $now.minus(30,'days').format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "51dd8171-2300-4574-9c71-56793127bf4a",
+              "name": "analysis_end_date",
+              "value": "={{ $now.format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "5e09cf25-80d9-44fe-9cf3-e2517bcfc6e6",
+              "name": "analytics_selector_id",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "5befd844-afe6-44c9-8ecd-c2741d838b19",
+              "name": "report_receiver",
+              "value": "email@eamil.com",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        40,
+        -60
+      ],
+      "id": "00b83323-17ef-44a1-82b1-eb867e532556",
+      "name": "Globals - CHANGE ME!"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "inspectionUrl",
+              "value": "={{ $json.loc }}"
+            },
+            {
+              "name": "siteUrl",
+              "value": "={{ $('Globals - CHANGE ME!').first().json.search_console_selector }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        280,
+        560
+      ],
+      "id": "cde1f4e7-f45d-4c64-906e-3b191550fc9a",
+      "name": "Get Page GSC Status",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleOAuth2Api": {
+          "id": "wWLEdLgRqrkoJMke",
+          "name": "Google account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.googleapis.com/webmasters/v3/sites/{{ $('Globals - CHANGE ME!').first().json.search_console_selector }}/searchAnalytics/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"startDate\": \"{{ $('Globals - CHANGE ME!').first().json.analysis_start_date }}\",\n  \"endDate\": \"{{ $('Globals - CHANGE ME!').first().json.analysis_end_date }}\",\n  \"type\": \"web\",\n  \"dimensionFilterGroups\": [\n    {\n      \"groupType\": \"AND\",\n      \"filters\": [\n        {\n          \"dimension\": \"page\",\n          \"operator\": \"contains\",\n          \"expression\": \"{{ $json.loc }}\"\n        }\n      ]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        280,
+        740
+      ],
+      "id": "c4856013-3111-4c04-b4d2-f92ad8f1cd88",
+      "name": "Get Page GSC Stats",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleOAuth2Api": {
+          "id": "wWLEdLgRqrkoJMke",
+          "name": "Google account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 3,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        540,
+        680
+      ],
+      "id": "b5e8f02d-320c-4fab-9e38-2a6dbb97e7b1",
+      "name": "Merge Status and Stats"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "o4-mini",
+          "mode": "list",
+          "cachedResultName": "o4-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        660,
+        880
+      ],
+      "id": "c7ff4009-65be-4d4a-b3dd-f711e7cefebb",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "zjIZQuuuZMJpiUny",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "propertyId": {
+          "__rl": true,
+          "value": "={{ $('Globals - CHANGE ME!').first().json.analytics_selector_id }}",
+          "mode": "id"
+        },
+        "dateRange": "custom",
+        "startDate": "={{ $('Globals - CHANGE ME!').first().json.analysis_start_date }}",
+        "endDate": "={{ $('Globals - CHANGE ME!').first().json.analysis_end_date }}",
+        "metricsGA4": {
+          "metricValues": [
+            {},
+            {
+              "listName": "screenPageViews"
+            },
+            {
+              "listName": "userEngagementDuration"
+            }
+          ]
+        },
+        "dimensionsGA4": {
+          "dimensionValues": [
+            {
+              "listName": "pageLocation"
+            }
+          ]
+        },
+        "returnAll": true,
+        "additionalFields": {
+          "dimensionFiltersUI": {
+            "filterExpressions": {
+              "expression": {
+                "stringFilter": [
+                  {
+                    "listName": "pageLocation",
+                    "value": "={{ $json.loc }}",
+                    "caseSensitive": false
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleAnalytics",
+      "typeVersion": 2,
+      "position": [
+        280,
+        920
+      ],
+      "id": "133cbc78-a835-4d6c-a366-187d3f2ca4b1",
+      "name": "Get Google Analytics Data",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleAnalyticsOAuth2": {
+          "id": "4JVj7vMgAo09ILvS",
+          "name": "Google Analytics account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Make HTTP request to get page data so you can further analyze page for SEO optimizations",
+        "url": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('URL', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        940,
+        880
+      ],
+      "id": "fc55254f-012b-4387-af4c-54211b386182",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1400,
+        900
+      ],
+      "id": "3658c627-a22b-4f4c-b2ee-33e9a361bb1e",
+      "name": "Merge AI Output With AI Input"
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.output }}",
+        "destinationKey": "output",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        900
+      ],
+      "id": "b92d08c4-13a3-4c92-b37f-da3a7a5ee7dc",
+      "name": "Markdown to HTML"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6a86e547-b789-4319-886f-b06120967d64",
+              "name": "loc",
+              "value": "={{ $json.loc }}",
+              "type": "string"
+            },
+            {
+              "id": "8ba00cd3-e45a-439f-b703-8a42dd0628fa",
+              "name": "inspectionResult.indexStatusResult.coverageState",
+              "value": "={{ $json.inspectionResult.indexStatusResult.coverageState }}",
+              "type": "string"
+            },
+            {
+              "id": "b83dc435-cbb1-4dc3-8c7e-3af41201dbfe",
+              "name": "output",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true,
+          "dotNotation": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        260
+      ],
+      "id": "a77ef66d-1313-43ee-b23f-c23a24529026",
+      "name": "Keep Only Valuable Columns"
+    },
+    {
+      "parameters": {
+        "operation": "convertToHtmlTable",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        720,
+        260
+      ],
+      "id": "fad58242-29c7-4c48-ae3f-667559cfd644",
+      "name": "Change to HTML table for sending"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $('Globals - CHANGE ME!').first().json['report_receiver'] }}",
+        "toEmail": "={{ $('Globals - CHANGE ME!').first().json['report_receiver'] }}",
+        "subject": "Your Analysis Is Complete",
+        "html": "=<h2>Analysis is complete</h2>\n{{ $json.table }}\n\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        940,
+        260
+      ],
+      "id": "3d737f97-9d5c-4f0c-8a2a-cbe98e0879d2",
+      "name": "Send Email with Full report",
+      "webhookId": "843191c3-c853-43c1-9523-4661654fb58e",
+      "credentials": {
+        "smtp": {
+          "id": "tkdzDgcUAt04af3B",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "type": "random"
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        -60
+      ],
+      "id": "8888143f-73ed-4ac7-84ee-b5b4bcf64c6e",
+      "name": "Sort For Testing Purposes"
+    },
+    {
+      "parameters": {
+        "content": "## Limit for Testing",
+        "height": 320,
+        "width": 440,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1140,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "fd4431b6-8a0a-4a2b-a70b-17d3fc2f34b5",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Setup Me First",
+        "height": 320,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -20,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "b821114e-234c-4183-a957-d5048f366ecd",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Get Email Report",
+        "height": 260,
+        "width": 1340,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        240,
+        200
+      ],
+      "typeVersion": 1,
+      "id": "2e0a5df7-7dd1-4ca7-b9e7-763928b32913",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "- sitemap_url - self exlpainatory\n- search_console_selector - for example \"sc-domain:sailingbyte.com\" but can be URL aswell- depends on how did you set up your search console\n- analysis_start_date and analysis_end_date - date range for analytics, by default last 30 days\n- analytics_selector_id - ID of Google Analytics setup, it is a large integer, you can find it in analytics url preceeded with letter \"p\", ex (your number is where there are X's): https://analytics.google.com/analytics/web/#/pXXXXXXXXX/reports/intelligenthome\n- report_receiver - email which will receive report ",
+        "height": 320,
+        "width": 380,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -420,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "a16024d1-28a1-4b73-85b7-fc15e9620184",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are professional SEO analyst and improver. You will receive in input data from Google Analytics and Google Search Console. Delivered data will be for single page.\n\nBased on this data, your task is to propose improvements, that are very specific to this page, and which will impact this web page positively. \n\nGeneral Data Evaluation:\n- How to get more users on this specific page\n- How to engage users more on this specific page\n- Analyze page itself for improvements\n- Look for potential issues in Google Analytics and Google Search Console data\n- Look for potential issues on website itself\n\nTechnical Evaluation:\n- Critical Fixes – Issues requiring immediate attention and resolution.\n- High-Impact Solutions – Simple adjustments that deliver significant results.\n- Enhancement Possibilities – Initiatives demanding greater investment but providing valuable long-term gains.\n\nContent Evaluation:\n- Keyword Strategy Assessment – Determine core and supporting search terms, evaluate keyword concentration levels, and examine strategic keyword positioning throughout the content.\n- Content Quality Review – Analyze the material's comprehensiveness, precision, and alignment with intended audience needs and expectations.\n- Accessibility and Clarity Analysis – Measure content comprehension difficulty through established readability frameworks including Flesch-Kincaid educational level, Flesch Reading Ease score, and Gunning-Fog complexity index.\n\nYou can add other improvement ideas, but they must be very specific to given page, no generalizations.\n\nWebsite is: {{ $json.pageLocation }}\n\nGoogle Analytics data is:\n- total users: {{ $json.totalUsers ?? 0}}\n- screen page views: {{ $json.screenPageViews ?? 0 }}\n- user engagement duration: {{ $json.userEngagementDuration ?? 0 }}\n\nGoogle Search Console data is:\n{{ $json.rows[0].toJsonString() }}\n\nIndexing status is as follows:\n{{ $json.inspectionResult.toJsonString() }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        780,
+        680
+      ],
+      "id": "cd5d0d57-f04a-4094-8f26-855dd1051589",
+      "name": "SEO analyst"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "5"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2025-06-23T09:52:14.318Z",
+      "updatedAt": "2025-06-23T09:52:14.318Z",
+      "id": "vfJ7DxaB1BnsVQhe",
+      "name": "Public"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-09T18:24:43.436Z",
+  "versionId": "322c9546-292a-4ee6-8437-41a3b7e0b92c"
+}
