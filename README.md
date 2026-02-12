@@ -3,7 +3,7 @@ These are N8N automations brought to you by Sailing Byte (https://sailingbyte.co
 
 Following automations are included in this repository:
 
-Virtual Scrum Master using Slack, Asana and Dev Feedback, Google Search Console and Analytics Analysis with AI Optimizations, Daylight Saving Time Notification, Parse DMARC reports, save them in database and notify on DKIM or SPF error, Noco Kanban Board with AI Prioritization, Email mailbox as Todoist tasks, Send N8N Audits and Failed Workflows to InfluxDB
+Parse DMARC reports, save them in database and notify on DKIM or SPF error, Daylight Saving Time Notification, Email mailbox as Todoist tasks, Virtual Scrum Master using Slack, Asana and Dev Feedback, Noco Kanban Board with AI Prioritization, Google Search Console and Analytics Analysis with AI Optimizations, Send N8N Audits and Failed Workflows to InfluxDB, Load Test
 
 You can read more about these automations on Sailing Byte's blog:
 - Managing Email Overload: https://sailingbyte.com/blog/managing-email-overload-free-automation-to-transform-gmail-emails-into-actionable-todoist-tasks/
