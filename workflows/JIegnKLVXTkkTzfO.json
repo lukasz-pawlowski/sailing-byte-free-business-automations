@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -312,6 +314,15 @@
   "settings": {
     "executionOrder": "v1"
   },
+  "shared": [
+    {
+      "updatedAt": "2025-07-09T17:27:51.413Z",
+      "createdAt": "2025-07-09T17:27:51.413Z",
+      "role": "workflow:owner",
+      "workflowId": "JIegnKLVXTkkTzfO",
+      "projectId": "Fj86H4Ku60ROKr91"
+    }
+  ],
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": []
@@ -319,8 +330,8 @@
   },
   "tags": [
     {
-      "createdAt": "2025-06-23T09:52:14.318Z",
       "updatedAt": "2025-06-23T09:52:14.318Z",
+      "createdAt": "2025-06-23T09:52:14.318Z",
       "id": "vfJ7DxaB1BnsVQhe",
       "name": "Public"
     }
