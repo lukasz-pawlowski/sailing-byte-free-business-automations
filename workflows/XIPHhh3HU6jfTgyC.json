@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "When clicking ‘Execute workflow’": {
       "main": [
@@ -701,7 +703,7 @@
     },
     {
       "parameters": {
-        "content": "## Influx Vars\nYou will need 3 variables:\n- InfluxDB URL\n- Organizatin\n- Bucket name\nPut it in here",
+        "content": "## Influx Vars\nYou will need 3 variables:\n- InfluxDB URL\n- Organization\n- Bucket name\nPut it in here",
         "height": 500,
         "width": 260,
         "color": 4
@@ -968,16 +970,25 @@
   "settings": {
     "executionOrder": "v1"
   },
+  "shared": [
+    {
+      "updatedAt": "2025-07-10T13:43:24.379Z",
+      "createdAt": "2025-07-10T13:43:24.379Z",
+      "role": "workflow:owner",
+      "workflowId": "XIPHhh3HU6jfTgyC",
+      "projectId": "Fj86H4Ku60ROKr91"
+    }
+  ],
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2025-06-23T09:52:14.318Z",
       "updatedAt": "2025-06-23T09:52:14.318Z",
+      "createdAt": "2025-06-23T09:52:14.318Z",
       "id": "vfJ7DxaB1BnsVQhe",
       "name": "Public"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-07-11T07:55:35.775Z",
-  "versionId": "5c854725-17cd-4dab-9421-9289498f05d4"
+  "updatedAt": "2025-07-11T08:21:32.927Z",
+  "versionId": "ca8f70df-803e-4b9b-921d-2f2e65a961bb"
 }
