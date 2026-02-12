@@ -1,5 +1,7 @@
 {
   "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "Email Trigger (IMAP)": {
       "main": [
@@ -756,6 +758,15 @@
     "callerPolicy": "workflowsFromSameOwner",
     "errorWorkflow": "5"
   },
+  "shared": [
+    {
+      "updatedAt": "2025-07-09T17:27:51.413Z",
+      "createdAt": "2025-07-09T17:27:51.413Z",
+      "role": "workflow:owner",
+      "workflowId": "ATxZ5QYhdJq9mZDO",
+      "projectId": "Fj86H4Ku60ROKr91"
+    }
+  ],
   "staticData": {
     "node:Email Trigger (IMAP)": {
       "lastMessageUid": 5162
@@ -763,8 +774,8 @@
   },
   "tags": [
     {
-      "createdAt": "2025-06-23T09:52:14.318Z",
       "updatedAt": "2025-06-23T09:52:14.318Z",
+      "createdAt": "2025-06-23T09:52:14.318Z",
       "id": "vfJ7DxaB1BnsVQhe",
       "name": "Public"
     }
