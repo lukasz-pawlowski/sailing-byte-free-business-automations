@@ -232,6 +232,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Noco Kanban Board with AI Prioritization",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
