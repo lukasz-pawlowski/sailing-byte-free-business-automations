@@ -94,6 +94,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Daylight Saving Time Notification",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
