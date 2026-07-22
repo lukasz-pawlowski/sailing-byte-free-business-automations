@@ -288,6 +288,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Send N8N Audits and Failed Workflows to InfluxDB",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
