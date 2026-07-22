@@ -280,6 +280,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Google Search Console and Analytics Analysis with AI Optimizations",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
