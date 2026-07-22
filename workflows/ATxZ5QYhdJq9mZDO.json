@@ -171,6 +171,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Parse DMARC reports, save them in database and notify on DKIM or SPF error",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
