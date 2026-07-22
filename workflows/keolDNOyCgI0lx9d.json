@@ -335,6 +335,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Virtual Scrum Master using Slack, Asana and Dev Feedback",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
