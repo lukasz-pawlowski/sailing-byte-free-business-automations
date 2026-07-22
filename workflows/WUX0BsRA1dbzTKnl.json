@@ -240,6 +240,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Email mailbox as Todoist tasks",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
