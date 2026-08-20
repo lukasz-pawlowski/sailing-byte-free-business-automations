@@ -1,0 +1,518 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Split tables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create NocoDB Table": {
+      "main": [
+        [
+          {
+            "node": "Create Tables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Tables": {
+      "main": [
+        [
+          {
+            "node": "Copy data over?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Source Table Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare fields data for Insert": {
+      "main": [
+        [
+          {
+            "node": "Fetch tables records1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copy rows to new tables": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Fetch tables records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch tables records": {
+      "main": [
+        [
+          {
+            "node": "Prepare fields data for Insert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Source Table Metadata": {
+      "main": [
+        [
+          {
+            "node": "Create NocoDB Table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split tables": {
+      "main": [
+        [
+          {
+            "node": "Create Tables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch tables records1": {
+      "main": [
+        [
+          {
+            "node": "Copy rows to new tables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copy data over?": {
+      "main": [
+        [
+          {
+            "node": "Copy rows to new tables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-08-20T06:37:58.901Z",
+  "id": "YU9KMDAnybn2pTLO",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Clone NocoDB Tables with data to another base",
+  "nodeGroups": [],
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        160
+      ],
+      "id": "976b2ef8-274a-4707-84e2-d95a223da320",
+      "name": "When clicking ‘Execute workflow’",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "297de599-7abe-4184-ab2f-6c082fa376be",
+              "name": "base_url",
+              "value": "https://app.nocodb.com",
+              "type": "string"
+            },
+            {
+              "id": "7c7bf021-4423-4b64-9a33-a5a3031ca4bf",
+              "name": "source_tables",
+              "value": "[\"table1\",\"table2\"]",
+              "type": "array"
+            },
+            {
+              "id": "57fa4746-0a1b-4b61-b4b1-9c7462113cf6",
+              "name": "source_base",
+              "value": "source_base",
+              "type": "string"
+            },
+            {
+              "id": "d1c410e5-22d8-4dcc-a859-c615ab5fef17",
+              "name": "destination_base",
+              "value": "destination_base",
+              "type": "string"
+            },
+            {
+              "id": "27d5d8a6-ff34-46cc-9c0f-9815a31e1c50",
+              "name": "copy_rows",
+              "value": true,
+              "type": "boolean"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -464,
+        160
+      ],
+      "id": "efb00a31-abc3-4b3a-be98-e1d6b6aefba2",
+      "name": "Config"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $(\"Config\").first().json.base_url }}/api/v3/meta/bases/{{$(\"Config\").first().json.destination_base}}/tables",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "nocoDbApiToken",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": \"{{ $json.title }} - Copy {{$now.toString().slice(0,19).split('T').join(' ')}}\",\n  \"table_name\": \"{{ $json.title }} - Copy {{$now.toString().slice(0,19).split('T').join(' ')}}\",\n  \"fields\": {{ JSON.stringify($json\n.fields\n.filter(f=>f.type!==\"Links\"&&f.type!==\"ID\"&&f.type!==\"ForeignKey\"&&f.type!==\"LinkToAnotherRecord\"&&f.type!==\"Lookup\")\n.map(f=>({title: f.title, type: f.type, options: f.options})))\n}}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        368,
+        256
+      ],
+      "id": "1834a6ce-cb00-4143-825f-836a605993d4",
+      "name": "Create NocoDB Table",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "kAY3Nntg4Ze5X5sG",
+          "name": "NocoDB Token Kazor"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -48,
+        160
+      ],
+      "id": "7ff54050-5e78-49c1-bf74-548ac252b74b",
+      "name": "Create Tables"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "873256a1-8179-4356-98e8-81a1d088c062",
+              "name": "records",
+              "value": "={{ $json.records.map(r=>r.fields) }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1216,
+        256
+      ],
+      "id": "e32d5b70-252b-453d-ac00-fb9115bb621a",
+      "name": "Prepare fields data for Insert"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        768,
+        144
+      ],
+      "id": "f38ec1ae-6b16-43ed-a11c-14c0685b6829",
+      "name": "Copy rows to new tables"
+    },
+    {
+      "parameters": {
+        "content": "## Config\nFill out this config. You need to provide:\n1. NocoDB Base URL - You might leave default value if you are not self hosting\n2. Source Tables - Tables you want to copy\n3. Source Base - Base where previously mentioned table lives\n4. Destination Base - Where to copy tables\n5. Copy Rows - If you wish to copy data as well",
+        "height": 576,
+        "width": 400,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        -112
+      ],
+      "id": "33828bdc-1b46-4d5d-b528-d96c2197267e",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "url": "={{ $(\"Config\").first().json.base_url }}/api/v3/data/{{$(\"Config\").first().json.source_base}}/{{$(\"Config\").first().json.source_tables[$runIndex]}}/records",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "nocoDbApiToken",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "={{ $('Create Tables').all()[$runIndex].json.fields.filter(f=>!['ID'].includes(f.type)).map(f=>f.title) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        960,
+        256
+      ],
+      "id": "58f7eebb-f514-47d4-90a2-473e6ae73395",
+      "name": "Fetch tables records",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "kAY3Nntg4Ze5X5sG",
+          "name": "NocoDB Token Kazor"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Step 1: Fetch information about tables and create copies\nWe use custom HTTP requests in order to access `/meta` endpoints. Learn more about NocoDB meta APIs [here](https://nocodb.com/apis/v3/meta)",
+        "height": 576,
+        "width": 832,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        -112
+      ],
+      "id": "055c763b-6b91-4af5-af7e-7ab1466d0909",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Config').first().json.base_url }}/api/v3/meta/bases/{{ $('Config').first().json.source_base }}/tables/{{ $json.source_tables}}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "nocoDbApiToken",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        160,
+        256
+      ],
+      "id": "b16b21ba-7298-4c33-a181-b103c316656d",
+      "name": "Get Source Table Metadata",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "kAY3Nntg4Ze5X5sG",
+          "name": "NocoDB Token Kazor"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "source_tables",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        160
+      ],
+      "id": "05126dbe-9b1b-4972-a79e-392f14f54bed",
+      "name": "Split tables"
+    },
+    {
+      "parameters": {
+        "content": "## Step 2: Copy data over from old tables to the new ones\nHere, we use custom HTTP request node so we can programatically select which fields we want to copy. We are using `/data` APIs about which you can learn more  [here](https://nocodb.com/apis/v3/data). For inserting data we could use standard N8N NocoDB nodes but it would require inserting each record separately, instead we use once again HTTP node to bulk upload all fields",
+        "height": 576,
+        "width": 1136,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        544,
+        -112
+      ],
+      "id": "e8cc6e6a-eb82-45ff-8715-12fcd075452f",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Clone NocoDB Tables with data over to another base\n### How it works?\nThis workflow uses NocoDB API to first fetch all relevant table metadata to later use it in custom HTTP request to copy it's structure . Next, it fetches data from original tables and puts it in newly created tables.\n\n### IMPORTANT\n**Workflow omits all relation fields to reduce complexity. These fields won't be carried over: `Links`, `Lookup`, `LinkToAnotherRecord`, `ForeignKey` and `ID`**\n\n### Setup steps\n1. Fill out Config node\n2. Connect your NocoDB credentials\nYou are all set\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNeed help? Contact us at [developers@sailingbyte.com](mailto:developers@sailingbyte.com) or visit [sailingbyte.com](https://sailingbyte.com)!\n\nHappy hacking!",
+        "height": 848,
+        "width": 496
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1232,
+        -384
+      ],
+      "id": "f98c5295-39be-4250-a7bc-384c2ba6d49d",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $(\"Config\").first().json.base_url }}/api/v3/data/{{$(\"Config\").first().json.source_base}}/{{$(\"Config\").first().json.source_tables[$runIndex]}}/records",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "nocoDbApiToken",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": []
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "={{ $json.records }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1488,
+        256
+      ],
+      "id": "3d4fbcda-42b4-47f3-90f4-ec3f739ffc62",
+      "name": "Fetch tables records1",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "kAY3Nntg4Ze5X5sG",
+          "name": "NocoDB Token Kazor"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Config').item.json.copy_rows }}",
+                    "rightValue": false,
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "c281894c-e016-4706-b15b-82630da1981e"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        592,
+        144
+      ],
+      "id": "9b8f9448-a097-49b8-875a-d7f61e53a8dc",
+      "name": "Copy data over?"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-08-20T06:37:58.901Z",
+      "createdAt": "2026-08-20T06:37:58.901Z",
+      "role": "workflow:owner",
+      "workflowId": "YU9KMDAnybn2pTLO",
+      "projectId": "Fj86H4Ku60ROKr91"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-06-23T09:52:14.318Z",
+      "createdAt": "2025-06-23T09:52:14.318Z",
+      "id": "vfJ7DxaB1BnsVQhe",
+      "name": "Public"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-08-20T06:38:24.373Z",
+  "versionId": "fe033e06-0f07-4932-9b8f-3a00d6b4a0e4"
+}
