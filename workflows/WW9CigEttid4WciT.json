@@ -1,0 +1,328 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load EE Subaccounts": {
+      "main": [
+        [
+          {
+            "node": "Check if account has enough email credits",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a Error message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Load EE Subaccounts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if account has enough email credits": {
+      "main": [
+        [
+          {
+            "node": "Prepare message content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare message content": {
+      "main": [
+        [
+          {
+            "node": "Send notification about low Email Credits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-08-20T06:39:54.106Z",
+  "id": "WW9CigEttid4WciT",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Elasticmail Email insufficent amount of email notification",
+  "nodeGroups": [],
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 4
+            }
+          ]
+        }
+      },
+      "id": "9aa8b395-211d-4b9c-84e7-5532645cb60e",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1728,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.elasticemail.com/v4/subaccounts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpCustomAuth",
+        "options": {}
+      },
+      "id": "072c77c6-d3c6-4062-9626-ec28ed9581b4",
+      "name": "Load EE Subaccounts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -1216,
+        416
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "SLLNT2qCu7kAj0pS",
+          "name": "TMetric API Kazor"
+        },
+        "httpCustomAuth": {
+          "id": "uYLiPkq89kIow6Vj",
+          "name": "Custom Auth account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "Minimum amount of Email Credits",
+              "type": "numberValue",
+              "numberValue": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "477bc6ed-69fc-431d-829e-98a7c1241147",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -1456,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0B165RD8JU",
+          "mode": "list",
+          "cachedResultName": "elastic-email-kredyty"
+        },
+        "text": "=Error obtaining Elastic Email subaccounts data  {{ $json.error }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        -912,
+        608
+      ],
+      "id": "345c71be-8cd4-4ef7-953d-f4b9fdddbdc5",
+      "name": "Send a Error message",
+      "webhookId": "9ba0fb60-6ef2-4e99-9376-4695cd6b214e",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "IvZCxNWZUk2WLNfY",
+          "name": "N8N Connector Kazor"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0B165RD8JU",
+          "mode": "list",
+          "cachedResultName": "elastic-email-kredyty"
+        },
+        "messageType": "block",
+        "blocksUi": "={{$json.messageContent}}",
+        "text": "=Elastic Email account {{ $json.Email }} has low Email credits amount ({{ $json.EmailCredits }})",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        -448,
+        400
+      ],
+      "id": "8d78fc53-8d12-4aaa-aa09-708a3e90e32f",
+      "name": "Send notification about low Email Credits",
+      "webhookId": "96875501-2986-4df9-ac9a-2c5cf2c174b6",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "IvZCxNWZUk2WLNfY",
+          "name": "N8N Connector Kazor"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "11fbf9e0-89e1-4ec6-b121-7807f508fd0a",
+              "leftValue": "={{ $json.EmailCredits }}",
+              "rightValue": "={{ $('Config').first().json['Minimum amount of Email Credits'] }}",
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        -912,
+        400
+      ],
+      "id": "912f25f3-5730-46c8-8ca3-3bbf17a41f02",
+      "name": "Check if account has enough email credits"
+    },
+    {
+      "parameters": {
+        "content": "## Fill out Config\nSet number of credits to trigger warning",
+        "height": 352,
+        "width": 496,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1792,
+        288
+      ],
+      "id": "a375c11d-b9ba-49cb-af8d-cf1b62b406f9",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Load Elastic Email Subaccount, check if they have at least provided amount of Email Credits and notify user if they don't\n",
+        "height": 496,
+        "width": 1120,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1280,
+        288
+      ],
+      "id": "ddcafd8f-dc0b-4623-a36e-953cb42b6916",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Elasticmail Email insufficent amount of email credits\n### How it works\nThis workflow uses custom HTTP Request to Elastic Email official API to get information about your subaccounts, filters out those which has more credits than you provided in config, and notifies you on Slack if subaccount like this exists\n\n### Setup\n1. Provide minimum allowed amount of Email Credits in \"Config\" node\n2. Configure Slack OAuth2 connection\n3. Create credentials for Elastic Email:\n    1. Create generic credential type in HTTP Request node\n    2. Select Custom Auth\n    3. In JSON field type:\n```\n{\n\t\"headers\": {\n\t\t\"X-ElasticEmail-ApiKey\": \"<Your EE Auth token>\"\n\t}\n}\n```\n\n#### IMPORTANT\nWhile creating Elastic Email API Key remember to create one from your main account. It's required to have access to `/subaccounts` endpoint in order for workflow to work\n\nTo obtain Elastic Email Auth token refer to official Rest API [docs](https://elasticemail.com/developers/api-documentation/rest-api) or you can get one [here](https://app.elasticemail.com/marketing/settings/new/manage-api) directly\n\n\n\n\n\n\n\n\n\nNeed help? Contact us at [developers@sailingbyte.com](mailto:developers@sailingbyte.com) or visit [sailingbyte.com](https://sailingbyte.com)!\n\nHappy hacking!",
+        "height": 736,
+        "width": 576
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2384,
+        -96
+      ],
+      "id": "c3e9e136-5481-4a0a-b9ad-586da97c62f1",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const affectedAccounts = $input.all().map(item=>item.json)\nconst accountMessages = affectedAccounts.map(a=>`\n  ### ${a.Email}\\n\\n**Remaining credits:** ${a.EmailCredits}\\n\\n**Monthly refill credits:** ${a.Settings.Email.MonthlyRefillCredits}\\n\\n---\n`).join('')\nconst messageContent = \n{\n\t\"blocks\": [\n\t\t{\n\t\t\t\"type\": \"markdown\",\n\t\t\t\"text\": `## Warning \\n\\n${affectedAccounts.length} of your ElasticEmail subaccounts are running low on credits.\\n\\n---\\n\\n${accountMessages}`\n\t\t}\n\t]\n}\n\n\nreturn {messageContent}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -672,
+        400
+      ],
+      "id": "1293111b-9732-4f58-b881-ef9b7f144038",
+      "name": "Prepare message content"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-08-20T06:39:54.106Z",
+      "createdAt": "2026-08-20T06:39:54.106Z",
+      "role": "workflow:owner",
+      "workflowId": "WW9CigEttid4WciT",
+      "projectId": "Fj86H4Ku60ROKr91"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-06-23T09:52:14.318Z",
+      "createdAt": "2025-06-23T09:52:14.318Z",
+      "id": "vfJ7DxaB1BnsVQhe",
+      "name": "Public"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-08-20T06:40:20.906Z",
+  "versionId": "1d0aa407-f8e6-4e93-958f-07954e74e691"
+}
